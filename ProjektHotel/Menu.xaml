@@ -1,0 +1,15 @@
+﻿<Window x:Class="ProjektHotel.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektHotel"
+        mc:Ignorable="d"
+        Title="Menu" Height="450" Width="800">
+    <Grid>
+      <Button Name="Zarezerwuj" Content="Zarezerwuj pokój" HorizontalAlignment="Left" Margin="182,92,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Zarezerwuj_OnClick" />
+      <Button Name="Lista" Content="Lista rezerwacji" HorizontalAlignment="Left" Margin="420,92,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Lista_OnClick"/>
+      <Button Name="Pokoje" Content="Pokoje" HorizontalAlignment="Left" Margin="182,221,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Pokoje_OnClick"/>
+      <Button Name="Goscie" Content="Goście" HorizontalAlignment="Left" Margin="420,221,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Goscie_OnClick"/>
+    </Grid>
+</Window>

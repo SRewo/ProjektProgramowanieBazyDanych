@@ -1,0 +1,16 @@
+﻿<Window x:Class="ProjektHotel.Logowanie"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektHotel"
+        mc:Ignorable="d"
+        Title="Zaloguj" Height="450" Width="800" Loaded="Logowanie_OnLoaded" DataContext="logowanie">
+    <Grid>
+        <Label Content="Login" HorizontalAlignment="Left" Margin="209,150,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hasło" HorizontalAlignment="Left" Margin="210,194,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="login" HorizontalAlignment="Left" Height="23" Margin="290,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox Name="password" HorizontalAlignment="Left" Height="23" Margin="290,198,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Zaloguj" HorizontalAlignment="Left" Margin="335,265,0,0" VerticalAlignment="Top" Width="75" Click="ButtonBase_OnClick"/>
+    </Grid>
+</Window>
