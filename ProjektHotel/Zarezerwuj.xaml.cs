@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace ProjektHotel
 {
@@ -19,9 +20,22 @@ namespace ProjektHotel
     /// </summary>
     public partial class Zarezerwuj : Window
     {
+        private DataSet _dataSet;
+
+
         public Zarezerwuj()
         {
             InitializeComponent();
+        }
+
+        public Zarezerwuj(DataSet dataSet) : this()
+        {
+            _dataSet = dataSet;
+        }
+
+        private void BackButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

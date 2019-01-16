@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace ProjektHotel
 {
@@ -19,9 +20,21 @@ namespace ProjektHotel
     /// </summary>
     public partial class Rezerwacje : Window
     {
+        private DataSet _dataSet;
+
         public Rezerwacje()
         {
             InitializeComponent();
+        }
+
+        public Rezerwacje(DataSet dataSet) : this()
+        {
+            _dataSet = dataSet;
+        }
+
+
+        private void Rezerwacje_OnLoaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

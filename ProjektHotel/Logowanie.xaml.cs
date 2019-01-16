@@ -88,8 +88,19 @@ namespace ProjektHotel
             DataSet dataSet = new DataSet();
             SqlDataAdapter adapter = new SqlDataAdapter();
 
-            adapter = new SqlDataAdapter("SELECT * FROM uzytkownicy", builder.ConnectionString);
-            adapter.Fill(dataSet, "uzytkownicy");
+            try
+            {
+
+                adapter = new SqlDataAdapter("SELECT * FROM uzytkownicy", builder.ConnectionString);
+                adapter.Fill(dataSet, "uzytkownicy");
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Nie udało się połączyć z bazą danych. Aby rozwiązać ten problem skontaktuj się z administratorem systemu.","Błąd bazy danych.",MessageBoxButton.OK,MessageBoxImage.Error);
+                Close();
+                return null;
+            }
 
             adapter.SelectCommand.CommandText = "SELECT * FROM uzytkownicy";
             adapter.Fill(dataSet, "goscie");

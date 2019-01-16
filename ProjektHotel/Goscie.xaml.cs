@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace ProjektHotel
 {
@@ -19,9 +20,16 @@ namespace ProjektHotel
     /// </summary>
     public partial class Goscie : Window
     {
+        private DataSet _dataSet;
+
         public Goscie()
         {
             InitializeComponent();
+        }
+
+        public Goscie(DataSet dataSet) : this()
+        {
+            _dataSet = dataSet;
         }
     }
 }

@@ -21,38 +21,41 @@ namespace ProjektHotel
     /// </summary>
     public partial class Menu : Window
     {
-        private DataSet _ds;
+        private DataSet _dataSet;
 
         public Menu()
         {
             InitializeComponent();
         }
 
-        public Menu(DataSet ds)
+        public Menu(DataSet dataSet) : this()
         {
-            InitializeComponent();
-            _ds = ds;
+            _dataSet = dataSet;
         }
 
         private void Zarezerwuj_OnClick(object sender, RoutedEventArgs e)
         {
-            Rezerwacje rezerwacje = new Rezerwacje();
-            rezerwacje.ShowDialog();
+            Zarezerwuj zarezerwuj = new Zarezerwuj(_dataSet);
+            zarezerwuj.ShowDialog();
         }
 
         private void Lista_OnClick(object sender, RoutedEventArgs e)
         {
-           
+            Rezerwacje rezerwacje = new Rezerwacje(_dataSet);
+            rezerwacje.ShowDialog();
         }
 
         private void Pokoje_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Pokoje pokoje = new Pokoje(_dataSet);
+            pokoje.ShowDialog();
         }
 
         private void Goscie_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Goscie goscie = new Goscie(_dataSet);
+            goscie.ShowDialog();
         }
+
     }
 }
