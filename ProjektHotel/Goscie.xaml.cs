@@ -31,5 +31,13 @@ namespace ProjektHotel
         {
             _dataSet = dataSet;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            DataTable goscieTabela = _dataSet.Tables["goscie"];
+            GoscieGrid.ItemsSource = goscieTabela.DefaultView;
+
+        }
     }
 }

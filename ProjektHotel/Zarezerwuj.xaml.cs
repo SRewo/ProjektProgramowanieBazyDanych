@@ -37,5 +37,14 @@ namespace ProjektHotel
         {
             Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            DataTable pokoje = _dataSet.Tables["pokoje"];
+            DataView view = pokoje.DefaultView;
+            ListaPokoi.ItemsSource = view;
+
+        }
     }
 }

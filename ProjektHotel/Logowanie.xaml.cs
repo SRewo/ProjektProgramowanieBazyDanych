@@ -75,7 +75,7 @@ namespace ProjektHotel
         private void Logowanie_OnLoaded(object sender, RoutedEventArgs e)
         {
             _builder = new SqlConnectionStringBuilder();
-            _builder.DataSource = "localhost";
+            _builder.DataSource = "RW\\SQLEXPRESS";
             _builder.InitialCatalog = "hotel";
             _builder.IntegratedSecurity = true;
 
@@ -102,7 +102,7 @@ namespace ProjektHotel
                 return null;
             }
 
-            adapter.SelectCommand.CommandText = "SELECT * FROM uzytkownicy";
+            adapter.SelectCommand.CommandText = "SELECT * FROM goscie";
             adapter.Fill(dataSet, "goscie");
 
             adapter.SelectCommand.CommandText = "SELECT * FROM pokoje";
