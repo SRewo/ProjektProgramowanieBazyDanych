@@ -58,6 +58,9 @@
     <Compile Include="Goscie.xaml.cs">
       <DependentUpon>Goscie.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListaGosci.xaml.cs">
+      <DependentUpon>ListaGosci.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PodsumowanieRezerwacji.xaml.cs">
       <DependentUpon>PodsumowanieRezerwacji.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,10 @@
       <DependentUpon>Zarezerwuj.xaml</DependentUpon>
     </Compile>
     <Page Include="Goscie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListaGosci.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

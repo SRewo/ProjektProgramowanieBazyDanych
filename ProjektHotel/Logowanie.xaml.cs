@@ -74,12 +74,14 @@ namespace ProjektHotel
 
         private void Logowanie_OnLoaded(object sender, RoutedEventArgs e)
         {
+
             _builder = new SqlConnectionStringBuilder();
-            _builder.DataSource = "RW\\SQLEXPRESS";
+            _builder.DataSource = "RW\\SQLEXPRESS";         //"RW\\SQLEXPRESS"
             _builder.InitialCatalog = "hotel";
             _builder.IntegratedSecurity = true;
 
             _dataSet = FillDataset(_builder);
+
         }
 
         //metoda to pobrania danych z bazy
@@ -97,9 +99,11 @@ namespace ProjektHotel
             }
             catch (SqlException ex)
             {
+
                 MessageBox.Show("Nie udało się połączyć z bazą danych. Aby rozwiązać ten problem skontaktuj się z administratorem systemu.","Błąd bazy danych.",MessageBoxButton.OK,MessageBoxImage.Error);
                 Close();
                 return null;
+
             }
 
             adapter.SelectCommand.CommandText = "SELECT * FROM goscie";
@@ -113,6 +117,21 @@ namespace ProjektHotel
 
             adapter.SelectCommand.CommandText = "SELECT * FROM zarezerwowane_pokoje";
             adapter.Fill(dataSet, "zarezewowane");
+
+            DataColumn idGosciaGoscie = dataSet.Tables["goscie"].Columns["id_goscia"];
+            DataColumn idGosciaRezezwacje = dataSet.Tables["rezerwacje"].Columns["id_goscia"];
+            DataColumn idRezerwacjiRezerwacje = dataSet.Tables["rezerwacje"].Columns["id_rezerwacji"];
+            DataColumn idRezerwacjiZarezerwowane = dataSet.Tables["zarezewowane"].Columns["id_rezerwacji"];
+            DataColumn idPokojuZarezerwowane = dataSet.Tables["zarezewowane"].Columns["id_pokoju"];
+            DataColumn idPokojuPokoje = dataSet.Tables["pokoje"].Columns["id_pokoju"];
+
+            DataRelation relationGoscie = new DataRelation("GoscieRezerwacje",idGosciaGoscie,idGosciaRezezwacje);
+            DataRelation relationRezewacje = new DataRelation("RezerwacjeZarezerwowane",idRezerwacjiRezerwacje,idRezerwacjiZarezerwowane);
+            DataRelation relationPokoje = new DataRelation("PokojeZarezewowane", idPokojuPokoje, idPokojuZarezerwowane);
+
+            dataSet.Relations.Add(relationGoscie);
+            dataSet.Relations.Add(relationRezewacje);
+            dataSet.Relations.Add(relationPokoje);
 
             return dataSet;
         }
