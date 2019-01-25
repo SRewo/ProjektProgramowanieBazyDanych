@@ -36,3 +36,17 @@ create table uzytkownicy(
 	password varchar(64) not null,
 	typ_uzytkownika nvarchar(30) not null
 )
+
+
+INSERT into pokoje values (1,'single - SGL',120)
+INSERT into pokoje values (2,'single - SGL',120)
+INSERT into pokoje values (3,'double - DBL',220)
+INSERT into pokoje values (4,'double - DBL',220)
+INSERT into pokoje values (5,'twin - TWN',320)
+INSERT into pokoje values (6,'twin - TWN',320)
+INSERT into pokoje values (7,'single - SGL',120)
+INSERT into pokoje values (8,'kings - KNG',500)
+
+
+Insert into goscie values ('Tomek','Kasztan','AXM876987','Powstañców 12','Katowice','732 187 988','')
+Insert into goscie values ('Adam','Boczek','AXM876234','Gra¿yñskiego 12','Katowice','732 187 444','')

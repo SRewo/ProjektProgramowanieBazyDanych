@@ -97,6 +97,7 @@ namespace ProjektHotel
 
             zmienStatus(false);
 
+            _wybranyGosc = 0;
             Imie.Text = String.Empty;
             Nazwisko.Text = String.Empty;
             NumerDowodu.Text = String.Empty;

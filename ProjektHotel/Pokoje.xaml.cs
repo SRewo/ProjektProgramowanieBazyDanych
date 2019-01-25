@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
+using MahApps.Metro.Controls;
 
 namespace ProjektHotel
 {
     /// <summary>
     /// Logika interakcji dla klasy Pokoje.xaml
     /// </summary>
-    public partial class Pokoje : Window
+    public partial class Pokoje : MetroWindow
     {
         private DataSet _dataSet;
 
@@ -30,6 +31,9 @@ namespace ProjektHotel
         public Pokoje(DataSet dataSet) : this()
         {
             _dataSet = dataSet;
+
+            DataTable pokojeTable = _dataSet.Tables["pokoje"];
+            PokojeGrid.ItemsSource = pokojeTable.DefaultView;
         }
     }
 }

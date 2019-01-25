@@ -1,8 +1,9 @@
-﻿<Window x:Class="ProjektHotel.Logowanie"
+﻿<Controls:MetroWindow x:Class="ProjektHotel.Logowanie"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:ProjektHotel"
         mc:Ignorable="d"
         Title="Zaloguj" Height="450" Width="800" Loaded="Logowanie_OnLoaded" DataContext="logowanie">
@@ -13,4 +14,4 @@
         <PasswordBox Name="password" HorizontalAlignment="Left" Height="23" Margin="290,198,0,0" VerticalAlignment="Top" Width="120"/>
         <Button Content="Zaloguj" HorizontalAlignment="Left" Margin="335,265,0,0" VerticalAlignment="Top" Width="75" Click="ButtonBase_OnClick"/>
     </Grid>
-</Window>
+</Controls:MetroWindow>

@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
+using MahApps.Metro.Controls;
 
 namespace ProjektHotel
 {
     /// <summary>
     /// Logika interakcji dla klasy Rezerwacje.xaml
     /// </summary>
-    public partial class Rezerwacje : Window
+    public partial class Rezerwacje : MetroWindow
     {
         private DataSet _dataSet;
 
@@ -35,6 +36,8 @@ namespace ProjektHotel
 
         private void Rezerwacje_OnLoaded(object sender, RoutedEventArgs e)
         {
+            DataTable rezerwacjeTable = _dataSet.Tables["rezerwacje"];
+            RezerwacjeGrid.ItemsSource = rezerwacjeTable.DefaultView;
         }
     }
 }

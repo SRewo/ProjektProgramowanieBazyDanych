@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Security.Cryptography;
+using MahApps.Metro.Controls;
 
 namespace ProjektHotel
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
-    public partial class Logowanie : Window
+    public partial class Logowanie : MetroWindow
     {
 
         private string _login;

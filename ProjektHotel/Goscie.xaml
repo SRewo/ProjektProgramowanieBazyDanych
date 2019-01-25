@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="Goscie" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-      
+
         <DataGrid x:Name="GoscieGrid" VerticalAlignment="Top" AutoGenerateColumns="True" Width="auto" Height="auto" IsReadOnly="True">
-        
+
         </DataGrid>
+        <Button x:Name="Btn_save" Content="Zapisz zmiany" HorizontalAlignment="Left" Height="36" Margin="308,304,0,0" VerticalAlignment="Top" Width="92" Click="Btn_save_Click"/>
     </Grid>
 </Window>
