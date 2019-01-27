@@ -22,20 +22,22 @@ namespace ProjektHotel
     public partial class Menu : Window
     {
         private DataSet _dataSet;
+        private SqlDataAdapter _adapter;
 
         public Menu()
         {
             InitializeComponent();
         }
 
-        public Menu(DataSet dataSet) : this()
+        public Menu(DataSet dataSet, SqlDataAdapter adapter) : this()
         {
             _dataSet = dataSet;
+            _adapter = adapter;
         }
 
         private void Zarezerwuj_OnClick(object sender, RoutedEventArgs e)
         {
-            Zarezerwuj zarezerwuj = new Zarezerwuj(_dataSet);
+            Zarezerwuj zarezerwuj = new Zarezerwuj(_dataSet,_adapter);
             zarezerwuj.ShowDialog();
         }
 

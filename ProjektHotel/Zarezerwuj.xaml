@@ -41,7 +41,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button x:Name="BackButton" Content="Wróć" HorizontalAlignment="Left" Margin="516,349,0,0" VerticalAlignment="Top" Width="75" Click="BackButton_OnClick"/>
-        <Button Content="Zatwierdź" HorizontalAlignment="Left" Margin="625,349,0,0" VerticalAlignment="Top" Width="75" />
+        <Button x:Name="Zatwierdz" Content="Zatwierdź" HorizontalAlignment="Left" Margin="625,349,0,0" VerticalAlignment="Top" Width="75" Click="Zatwierdz_OnClick" />
         <Button x:Name="Wyczysc" Content="Wyczyść Formularz" HorizontalAlignment="Left" Margin="370,349,0,0" VerticalAlignment="Top" Width="105" Click="Wyczysc_OnClick"/>
     </Grid>
 </Window>

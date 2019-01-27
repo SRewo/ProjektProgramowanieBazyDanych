@@ -29,6 +29,7 @@ namespace ProjektHotel
         private string _password;
         private SqlConnectionStringBuilder _builder;
         private DataSet _dataSet;
+        private SqlDataAdapter _adapter;
     
         public Logowanie()
         {
@@ -61,7 +62,7 @@ namespace ProjektHotel
                 }
                 else
                 {
-                    Menu windowMenu = new Menu(_dataSet);
+                    Menu windowMenu = new Menu(_dataSet,_adapter);
                     Close();
                     windowMenu.Show();
                 }
@@ -77,7 +78,7 @@ namespace ProjektHotel
         {
 
             _builder = new SqlConnectionStringBuilder();
-            _builder.DataSource = "RW\\SQLEXPRESS";         //"RW\\SQLEXPRESS"
+            _builder.DataSource = "localhost";         //"RW\\SQLEXPRESS"
             _builder.InitialCatalog = "hotel";
             _builder.IntegratedSecurity = true;
 
@@ -96,6 +97,7 @@ namespace ProjektHotel
 
                 adapter = new SqlDataAdapter("SELECT * FROM uzytkownicy", builder.ConnectionString);
                 adapter.Fill(dataSet, "uzytkownicy");
+                _adapter = adapter;
 
             }
             catch (SqlException ex)
@@ -107,9 +109,6 @@ namespace ProjektHotel
 
             }
 
-            adapter.SelectCommand.CommandText = "SELECT * FROM goscie";
-            adapter.Fill(dataSet, "goscie");
-
             adapter.SelectCommand.CommandText = "SELECT * FROM pokoje";
             adapter.Fill(dataSet, "pokoje");
 
@@ -119,20 +118,8 @@ namespace ProjektHotel
             adapter.SelectCommand.CommandText = "SELECT * FROM zarezerwowane_pokoje";
             adapter.Fill(dataSet, "zarezewowane");
 
-            DataColumn idGosciaGoscie = dataSet.Tables["goscie"].Columns["id_goscia"];
-            DataColumn idGosciaRezezwacje = dataSet.Tables["rezerwacje"].Columns["id_goscia"];
-            DataColumn idRezerwacjiRezerwacje = dataSet.Tables["rezerwacje"].Columns["id_rezerwacji"];
-            DataColumn idRezerwacjiZarezerwowane = dataSet.Tables["zarezewowane"].Columns["id_rezerwacji"];
-            DataColumn idPokojuZarezerwowane = dataSet.Tables["zarezewowane"].Columns["id_pokoju"];
-            DataColumn idPokojuPokoje = dataSet.Tables["pokoje"].Columns["id_pokoju"];
-
-            DataRelation relationGoscie = new DataRelation("GoscieRezerwacje",idGosciaGoscie,idGosciaRezezwacje);
-            DataRelation relationRezewacje = new DataRelation("RezerwacjeZarezerwowane",idRezerwacjiRezerwacje,idRezerwacjiZarezerwowane);
-            DataRelation relationPokoje = new DataRelation("PokojeZarezewowane", idPokojuPokoje, idPokojuZarezerwowane);
-
-            dataSet.Relations.Add(relationGoscie);
-            dataSet.Relations.Add(relationRezewacje);
-            dataSet.Relations.Add(relationPokoje);
+            adapter.SelectCommand.CommandText = "SELECT * FROM goscie";
+            adapter.Fill(dataSet, "goscie");
 
             return dataSet;
         }
