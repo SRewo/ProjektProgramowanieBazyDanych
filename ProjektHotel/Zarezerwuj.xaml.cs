@@ -24,6 +24,8 @@ namespace ProjektHotel
         private DataSet _dataSet;
         private int _wybranyGosc;
         private SqlDataAdapter _adapter;
+        private DateTime _dataOd;
+        private DateTime _dataDo;
 
         public Zarezerwuj()
         {
@@ -45,23 +47,8 @@ namespace ProjektHotel
         {
 
             DataTable pokoje = _dataSet.Tables["pokoje"];
-            DataTable zarazerwowanepokoje = _dataSet.Tables["zarezewowane"];
-            DataTable rezerwacje = _dataSet.Tables["rezerwacje"];
-
-            var niedostepnePokoje = from pokoj in pokoje.AsEnumerable()
-                join zarezerwowane in zarazerwowanepokoje.AsEnumerable() on pokoj.Field<int>("id_pokoju") equals
-                    zarezerwowane.Field<int>("id_pokoju")
-                join rezerwacja in rezerwacje.AsEnumerable() on zarezerwowane.Field<int>("id_rezerwacji") equals
-                    rezerwacja.Field<int>("id_rezerwacji")
-                where rezerwacja.Field<DateTime?>("od") < DateTime.Now ||
-                      rezerwacja.Field<DateTime?>("do") > DateTime.Now
-                select pokoj.Field<int>("id_pokoju");
-
-            var view = from pokoj in pokoje.AsEnumerable()
-                where !(niedostepnePokoje.Contains<int>(pokoj.Field<int>("id_pokoju")))
-                select pokoj;
-
-            ListaPokoi.ItemsSource = view.AsDataView();
+            
+            ListaPokoi.ItemsSource = pokoje.AsDataView();
 
         }
 
@@ -126,6 +113,11 @@ namespace ProjektHotel
 
             DataOd.SelectedDate = null;
             DataDo.SelectedDate = null;
+
+            DataTable pokoje = _dataSet.Tables["pokoje"];
+
+            ListaPokoi.ItemsSource = pokoje.AsDataView();
+
             ListaPokoi.UnselectAll();
         }
 
@@ -135,7 +127,9 @@ namespace ProjektHotel
             if (_wybranyGosc == 0)
             {
 
-                if (NumerDowodu.Text == "" || Imie.Text == "" || Nazwisko.Text == "" || Telefon.Text == "") 
+                if ( NumerDowodu.Text == "" || Imie.Text == "" || Nazwisko.Text == "" || Telefon.Text == "" ||
+                    DataOd.SelectedDate < DateTime.Now || DataDo.SelectedDate < DataOd.SelectedDate ||
+                    ListaPokoi.SelectedItems.Count == 0 || DataOd.SelectedDate == null || DataDo.SelectedDate == null)
                 {
 
                     MessageBox.Show("Proszę wprowadzić poprawne dane gościa.");
@@ -151,17 +145,6 @@ namespace ProjektHotel
                 {
 
                     DataTable goscie = _dataSet.Tables["goscie"];
-                    DataRow row = goscie.NewRow();
-
-                    row[1] = Imie.Text;
-                    row[2] = Nazwisko.Text;
-                    row[3] = NumerDowodu.Text.ToUpper();
-                    row[4] = Ulica.Text;
-                    row[5] = Miasto.Text;
-                    row[6] = Telefon.Text;
-                    row[7] = Email.Text;
-
-                    
 
                     var id = from gosc in goscie.AsEnumerable()
                         where gosc.Field<string>("numer_dowodu") == NumerDowodu.Text.ToUpper()
@@ -173,15 +156,24 @@ namespace ProjektHotel
                     }
                     else
                     {
+                        reloadGoscie();
+                        DataRow row = goscie.NewRow();
+
+                        row[1] = Imie.Text;
+                        row[2] = Nazwisko.Text;
+                        row[3] = NumerDowodu.Text.ToUpper();
+                        row[4] = Ulica.Text;
+                        row[5] = Miasto.Text;
+                        row[6] = Telefon.Text;
+                        row[7] = Email.Text;
+
                         goscie.Rows.Add(row);
 
                         var polecenieUpdate = new SqlCommandBuilder(_adapter);
                         _adapter.InsertCommand = polecenieUpdate.GetInsertCommand(true);
                         _adapter.Update(_dataSet,"goscie");
 
-                        _dataSet.Tables.Remove(goscie);
-                        _adapter.SelectCommand.CommandText = "SELECT * FROM goscie";
-                        _adapter.Fill(_dataSet, "goscie");
+                        reloadGoscie();
 
                         var idWpowadzonego = from gosc in goscie.AsEnumerable()
                             where gosc.Field<string>("numer_dowodu") == NumerDowodu.Text.ToUpper()
@@ -189,14 +181,188 @@ namespace ProjektHotel
 
                         _wybranyGosc = idWpowadzonego.First();
 
+                        MessageBox.Show("Dodano nowego gościa");
+
+                        DodajRezerwacje();
                     }  
                 }
 
             }
             else
             {
-                MessageBox.Show(_wybranyGosc.ToString());
+
+                if (DataOd.SelectedDate < DateTime.Now || DataDo.SelectedDate < DataOd.SelectedDate ||
+                    ListaPokoi.SelectedItems.Count == 0 || DataOd.SelectedDate == null || DataDo.SelectedDate == null)
+                {
+
+                    MessageBox.Show("Proszę wprowadzić poprawne dane");
+
+                }
+                else
+                {
+                    DodajRezerwacje();
+                }
+
             }
+
+        }
+
+        private void DataOd_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if(DataOd.SelectedDate != null)
+                _dataOd = (DateTime) DataOd.SelectedDate;
+
+            if (_dataOd != DateTime.MinValue && _dataDo != DateTime.MinValue)
+            {
+
+                ZmienDostepnePokoje();
+
+            }
+
+        }
+
+        private void DataDo_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (DataDo.SelectedDate != null)
+                _dataDo = (DateTime) DataDo.SelectedDate;
+
+            if (_dataOd != null && _dataDo != null)
+            {
+
+                ZmienDostepnePokoje();
+
+            }
+
+        }
+
+        private void ZmienDostepnePokoje()
+        {
+            DataTable pokoje = _dataSet.Tables["pokoje"];
+            DataTable zarazerwowanepokoje = _dataSet.Tables["zarezerwowane"];
+            DataTable rezerwacje = _dataSet.Tables["rezerwacje"];
+
+            var niedostepnePokoje = from pokoj in pokoje.AsEnumerable()
+                join zarezerwowane in zarazerwowanepokoje.AsEnumerable() on pokoj.Field<int>("id_pokoju") equals
+                    zarezerwowane.Field<int>("id_pokoju")
+                join rezerwacja in rezerwacje.AsEnumerable() on zarezerwowane.Field<int>("id_rezerwacji") equals
+                    rezerwacja.Field<int>("id_rezerwacji")
+                where (rezerwacja.Field<DateTime?>("od") >= _dataOd &&
+                      rezerwacja.Field<DateTime?>("do") >= _dataDo &&
+                      rezerwacja.Field<DateTime?>("od") <= _dataDo) ||
+
+                      (rezerwacja.Field<DateTime?>("od") >= _dataOd &&
+                       rezerwacja.Field<DateTime?>("do") <= _dataDo)
+                                    select pokoj.Field<int>("id_pokoju");
+
+            var view = from pokoj in pokoje.AsEnumerable()
+                where !(niedostepnePokoje.Contains<int>(pokoj.Field<int>("id_pokoju")))
+                select pokoj;
+
+            ListaPokoi.ItemsSource = view.AsDataView();
+        }
+
+        public void DodajRezerwacje()
+        {
+            reloadRezerwacje();
+
+            DataTable rezerwacje = _dataSet.Tables["rezerwacje"];
+            DataTable pokoje = _dataSet.Tables["pokoje"];
+
+            List<int> idPokoji = new List<int>();
+
+            foreach (DataRowView pokoj in ListaPokoi.SelectedItems)
+            {
+
+                idPokoji.Add((int)pokoj["id_pokoju"]);
+
+            }
+
+            var doZaplaty = from pok in pokoje.AsEnumerable()
+                where idPokoji.Contains(pok.Field<int>("id_pokoju"))
+                select pok.Field<decimal>("cena_za_dobe");
+
+            decimal wartoscDoZaplaty = doZaplaty.Sum();
+            
+            DataRow rezerwacja = rezerwacje.NewRow();
+
+            rezerwacja["id_goscia"] = _wybranyGosc;
+            rezerwacja["data_rezerwacji"] = DateTime.Now;
+            rezerwacja["od"] = _dataOd;
+            rezerwacja["do"] = _dataDo;
+            rezerwacja["cena_laczna"] = wartoscDoZaplaty;
+
+            rezerwacje.Rows.Add(rezerwacja);
+
+            var polecenieUpdate = new SqlCommandBuilder(_adapter);
+            _adapter.InsertCommand = polecenieUpdate.GetInsertCommand(true);
+            _adapter.Update(_dataSet, "rezerwacje");
+
+            reloadRezerwacje();
+            rezerwacje = _dataSet.Tables["rezerwacje"];
+
+            var idRezerwacji = from rez in rezerwacje.AsEnumerable()
+                where rez.Field<int>("id_goscia") == _wybranyGosc && rez.Field<decimal>("cena_laczna") ==
+                    doZaplaty.Sum() && rez.Field<DateTime?>("od") == _dataOd && rez.Field<DateTime?>("do") == _dataDo
+                select rez.Field<int>("id_rezerwacji");
+
+            if (idRezerwacji.Count() == 1)
+            {
+
+                reloadZarezerwowane();
+                DataTable zarezerwowane = _dataSet.Tables["zarezerwowane"];
+
+                int idRez = idRezerwacji.First();
+
+                foreach (var idpokoju in idPokoji)
+                {
+
+                    DataRow row = zarezerwowane.NewRow();
+                    row[0] = idpokoju;
+                    row[1] = idRez;
+
+                    zarezerwowane.Rows.Add(row);
+                }
+
+                var polecenieUpdate2 = new SqlCommandBuilder(_adapter);
+                _adapter.InsertCommand = polecenieUpdate2.GetInsertCommand(true);
+                _adapter.Update(_dataSet, "zarezerwowane");
+
+                reloadZarezerwowane();
+
+                MessageBox.Show("Pomyślnie dokonano rezerwacji");
+
+            }
+
+        }
+
+        private void reloadRezerwacje()
+        {
+            DataTable rezerwacje = _dataSet.Tables["rezerwacje"];
+            _dataSet.Tables.Remove(rezerwacje);
+            _adapter.SelectCommand.CommandText = "SELECT * FROM rezerwacje";
+            _adapter.Fill(_dataSet, "rezerwacje");
+
+        }
+
+        private void reloadGoscie()
+        {
+
+            DataTable goscie = _dataSet.Tables["goscie"];
+            _dataSet.Tables.Remove(goscie);
+            _adapter.SelectCommand.CommandText = "SELECT * FROM goscie";
+            _adapter.Fill(_dataSet, "goscie");
+
+        }
+
+        private void reloadZarezerwowane()
+        {
+
+            DataTable zarezerwowane = _dataSet.Tables["zarezerwowane"];
+            _dataSet.Tables.Remove(zarezerwowane);
+            _adapter.SelectCommand.CommandText = "SELECT * FROM zarezerwowane_pokoje";
+            _adapter.Fill(_dataSet, "zarezerwowane");
 
         }
     }

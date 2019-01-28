@@ -109,6 +109,9 @@ namespace ProjektHotel
 
             }
 
+            adapter.SelectCommand.CommandText = "SELECT * FROM goscie";
+            adapter.Fill(dataSet, "goscie");
+
             adapter.SelectCommand.CommandText = "SELECT * FROM pokoje";
             adapter.Fill(dataSet, "pokoje");
 
@@ -116,10 +119,7 @@ namespace ProjektHotel
             adapter.Fill(dataSet, "rezerwacje");
 
             adapter.SelectCommand.CommandText = "SELECT * FROM zarezerwowane_pokoje";
-            adapter.Fill(dataSet, "zarezewowane");
-
-            adapter.SelectCommand.CommandText = "SELECT * FROM goscie";
-            adapter.Fill(dataSet, "goscie");
+            adapter.Fill(dataSet, "zarezerwowane");
 
             return dataSet;
         }
