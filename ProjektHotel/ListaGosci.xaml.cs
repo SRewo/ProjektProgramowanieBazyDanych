@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
+using MahApps.Metro.Controls;
 
 namespace ProjektHotel
 {
     /// <summary>
     /// Logika interakcji dla klasy ListaGosci.xaml
     /// </summary>
-    public partial class ListaGosci : Window
+    public partial class ListaGosci : MetroWindow
     {
         private DataSet _dataSet;
         public DataRowView WybranyGosc { private set; get; }

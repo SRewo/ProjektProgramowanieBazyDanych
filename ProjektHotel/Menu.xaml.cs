@@ -13,13 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
+using MahApps.Metro.Controls;
 
 namespace ProjektHotel
 {
     /// <summary>
     /// Logika interakcji dla klasy Menu.xaml
     /// </summary>
-    public partial class Menu : Window
+    public partial class Menu : MetroWindow
     {
         private DataSet _dataSet;
         private SqlDataAdapter _adapter;

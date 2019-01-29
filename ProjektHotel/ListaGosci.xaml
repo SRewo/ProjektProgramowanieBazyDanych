@@ -1,6 +1,7 @@
-﻿<Window x:Class="ProjektHotel.ListaGosci"
+﻿<Controls:MetroWindow x:Class="ProjektHotel.ListaGosci"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektHotel"
@@ -10,4 +11,4 @@
         <DataGrid x:Name="GoscieGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" SelectionMode="Single"></DataGrid>
         <Button x:Name="Zatwierdz" Width="80px" Height="30px" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20,20,20,20" Content="Wybierz" Click="Zatwierdz_OnClick"></Button>
     </Grid>
-</Window>
+</Controls:MetroWindow>

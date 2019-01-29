@@ -78,7 +78,7 @@ namespace ProjektHotel
         {
 
             _builder = new SqlConnectionStringBuilder();
-            _builder.DataSource = "localhost";         //"RW\\SQLEXPRESS"
+            _builder.DataSource = "RW\\SQLEXPRESS";         //"RW\\SQLEXPRESS"
             _builder.InitialCatalog = "hotel";
             _builder.IntegratedSecurity = true;
 

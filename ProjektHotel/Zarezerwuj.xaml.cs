@@ -13,13 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
+using MahApps.Metro.Controls;
 
 namespace ProjektHotel
 {
     /// <summary>
     /// Logika interakcji dla klasy Zarezerwuj.xaml
     /// </summary>
-    public partial class Zarezerwuj : Window
+    public partial class Zarezerwuj : MetroWindow
     {
         private DataSet _dataSet;
         private int _wybranyGosc;
@@ -157,8 +158,8 @@ namespace ProjektHotel
                     else
                     {
                         reloadGoscie();
+                        goscie = _dataSet.Tables["goscie"];
                         DataRow row = goscie.NewRow();
-
                         row[1] = Imie.Text;
                         row[2] = Nazwisko.Text;
                         row[3] = NumerDowodu.Text.ToUpper();
@@ -174,6 +175,8 @@ namespace ProjektHotel
                         _adapter.Update(_dataSet,"goscie");
 
                         reloadGoscie();
+
+                        goscie = _dataSet.Tables["goscie"];
 
                         var idWpowadzonego = from gosc in goscie.AsEnumerable()
                             where gosc.Field<string>("numer_dowodu") == NumerDowodu.Text.ToUpper()
