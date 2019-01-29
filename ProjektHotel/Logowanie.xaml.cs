@@ -78,7 +78,7 @@ namespace ProjektHotel
         {
 
             _builder = new SqlConnectionStringBuilder();
-            _builder.DataSource = "RW\\SQLEXPRESS";         //"RW\\SQLEXPRESS"
+            _builder.DataSource = "localhost";         //"RW\\SQLEXPRESS"
             _builder.InitialCatalog = "hotel";
             _builder.IntegratedSecurity = true;
 
@@ -96,8 +96,7 @@ namespace ProjektHotel
             {
 
                 adapter = new SqlDataAdapter("SELECT * FROM uzytkownicy", builder.ConnectionString);
-                adapter.Fill(dataSet, "uzytkownicy");
-                _adapter = adapter;
+                adapter.Fill(dataSet, "uzytkownicy");   
 
             }
             catch (SqlException ex)
@@ -120,6 +119,8 @@ namespace ProjektHotel
 
             adapter.SelectCommand.CommandText = "SELECT * FROM zarezerwowane_pokoje";
             adapter.Fill(dataSet, "zarezerwowane");
+
+            _adapter = adapter;
 
             return dataSet;
         }

@@ -334,8 +334,9 @@ namespace ProjektHotel
 
                 reloadZarezerwowane();
 
-                MessageBox.Show("Pomyślnie dokonano rezerwacji");
+                PodsumowanieRezerwacji window = new PodsumowanieRezerwacji(_dataSet,idRez);
 
+                window.ShowDialog();
             }
 
         }

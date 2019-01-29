@@ -8,9 +8,9 @@
         mc:Ignorable="d"
         Title="Menu" Height="450" Width="800">
     <Grid>
-      <Button Name="Zarezerwuj" Content="Zarezerwuj pokój" HorizontalAlignment="Left" Margin="182,92,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Zarezerwuj_OnClick" />
-      <Button Name="Lista" Content="Lista rezerwacji" HorizontalAlignment="Left" Margin="420,92,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Lista_OnClick"/>
-      <Button Name="Pokoje" Content="Pokoje" HorizontalAlignment="Left" Margin="182,221,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Pokoje_OnClick"/>
-      <Button Name="Goscie" Content="Goście" HorizontalAlignment="Left" Margin="420,221,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Goscie_OnClick"/>
+        <Button Name="Zarezerwuj" Content="Zarezerwuj pokój" HorizontalAlignment="Left" Margin="182,92,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Zarezerwuj_OnClick" Style="{StaticResource AccentedSquareButtonStyle}" />
+        <Button Name="Lista" Content="Lista rezerwacji" HorizontalAlignment="Left" Margin="420,92,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Lista_OnClick" Style="{StaticResource AccentedSquareButtonStyle}"/>
+        <Button Name="Pokoje" Content="Pokoje" HorizontalAlignment="Left" Margin="182,221,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Pokoje_OnClick" Style="{StaticResource AccentedSquareButtonStyle}"/>
+        <Button Name="Goscie" Content="Goście" HorizontalAlignment="Left" Margin="420,221,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Goscie_OnClick" Style="{StaticResource AccentedSquareButtonStyle}"/>
     </Grid>
 </Controls:MetroWindow>
