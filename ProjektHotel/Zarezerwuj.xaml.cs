@@ -74,12 +74,6 @@ namespace ProjektHotel
 
                 _wybranyGosc = (int) view["id_goscia"];
             }
-            else
-            {
-
-                MessageBox.Show("Nie wybrano gościa");
-
-            }
 
         }
 
@@ -256,7 +250,14 @@ namespace ProjektHotel
                       rezerwacja.Field<DateTime?>("od") <= _dataDo) ||
 
                       (rezerwacja.Field<DateTime?>("od") >= _dataOd &&
-                       rezerwacja.Field<DateTime?>("do") <= _dataDo)
+                       rezerwacja.Field<DateTime?>("do") <= _dataDo) ||
+
+                      (rezerwacja.Field<DateTime?>("od") <= _dataOd &&
+                       rezerwacja.Field<DateTime?>("do") >= _dataDo) ||
+
+                      (rezerwacja.Field<DateTime?>("od") <= _dataOd &&
+                       rezerwacja.Field<DateTime?>("do") <= _dataDo &&
+                       rezerwacja.Field<DateTime?>("do") >= _dataOd)
                                     select pokoj.Field<int>("id_pokoju");
 
             var view = from pokoj in pokoje.AsEnumerable()

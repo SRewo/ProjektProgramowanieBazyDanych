@@ -8,7 +8,17 @@
         mc:Ignorable="d"
         Title="ListaGosci" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <DataGrid x:Name="GoscieGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" SelectionMode="Single"></DataGrid>
+        <DataGrid x:Name="GoscieGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Imię" Binding="{Binding imie}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding nazwisko}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Numer dowodu" Binding="{Binding numer_dowodu}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ulica" Binding="{Binding ulica}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Miasto" Binding="{Binding miasto}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Numer telefonu" Binding="{Binding telefon}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Adres e-mail" Binding="{Binding email}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="Zatwierdz" Width="80px" Height="30px" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20,20,20,20" Content="Wybierz" Click="Zatwierdz_OnClick"></Button>
     </Grid>
 </Controls:MetroWindow>
