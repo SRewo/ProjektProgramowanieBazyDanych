@@ -6,43 +6,144 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektHotel"
         mc:Ignorable="d"
-        Title="Zarezerwuj" Height="450" Width="800" Loaded="Window_Loaded">
+        WindowTitleBrush="Black"
+        Title="Zarezerwuj pokój" Height="650" Width="1000" Loaded="Window_Loaded">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="57,24,0,0" TextWrapping="Wrap" Text="Zarezewuj pokój" VerticalAlignment="Top" FontSize="24" />
-        <Button Content="Wybierz gościa" HorizontalAlignment="Left" Margin="110,75,0,0" VerticalAlignment="Top" Width="97" Click="ButtonBase_OnClick"/>
-        <Label Content="Imię" HorizontalAlignment="Left" Margin="57,140,0,0" VerticalAlignment="Top"/>
-        <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="57,171,0,0" VerticalAlignment="Top"/>
-        <Label Content="Numer dowodu" HorizontalAlignment="Left" Margin="57,202,0,0" VerticalAlignment="Top"/>
-        <Label Content="Ulica" HorizontalAlignment="Left" Margin="57,233,0,0" VerticalAlignment="Top"/>
-        <Label Content="Miasto" HorizontalAlignment="Left" Margin="57,264,0,0" VerticalAlignment="Top"/>
-        <Label Content="Telefon" HorizontalAlignment="Left" Margin="57,295,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="57,326,0,0" VerticalAlignment="Top"/>
-        <GridSplitter HorizontalAlignment="Left" Height="241" Margin="380,128,0,0" VerticalAlignment="Top" Width="5"/>
-        <Label Content="Data od" HorizontalAlignment="Left" Margin="445,140,0,0" VerticalAlignment="Top"/>
-        <Label Content="Data do" HorizontalAlignment="Left" Margin="445,179,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Imie" HorizontalAlignment="Left" Height="23" Margin="174,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Nazwisko" HorizontalAlignment="Left" Height="23" Margin="174,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="NumerDowodu" HorizontalAlignment="Left" Height="23" Margin="174,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Ulica" HorizontalAlignment="Left" Height="23" Margin="174,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Miasto" HorizontalAlignment="Left" Height="23" Margin="174,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Telefon" HorizontalAlignment="Left" Height="23" Margin="174,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Email" HorizontalAlignment="Left" Height="23" Margin="174,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DatePicker x:Name="DataOd" HorizontalAlignment="Left" Height="23" Margin="516,140,0,0" VerticalAlignment="Top" Width="120" SelectedDateChanged="DataOd_OnSelectedDateChanged"/>
-        <DatePicker x:Name="DataDo" HorizontalAlignment="Left" Height="23" Margin="516,180,0,0" VerticalAlignment="Top" Width="120" SelectedDateChanged="DataDo_OnSelectedDateChanged"/>
-        <Label Content="Typ pokoju" HorizontalAlignment="Left" Margin="442,219,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="ListaPokoi" HorizontalAlignment="Left" Height="103" Margin="516,231,0,0" VerticalAlignment="Top" Width="120" SelectionMode="Multiple">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding numer}" />
-                        <Label Content="{Binding typ}" />
-                        <Label Content="{Binding cena_za_dobe}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Button x:Name="BackButton" Content="Wróć" HorizontalAlignment="Left" Margin="516,349,0,0" VerticalAlignment="Top" Width="75" Click="BackButton_OnClick"/>
-        <Button x:Name="Zatwierdz" Content="Zatwierdź" HorizontalAlignment="Left" Margin="625,349,0,0" VerticalAlignment="Top" Width="75" Click="Zatwierdz_OnClick" />
-        <Button x:Name="Wyczysc" Content="Wyczyść Formularz" HorizontalAlignment="Left" Margin="370,349,0,0" VerticalAlignment="Top" Width="105" Click="Wyczysc_OnClick"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+
+
+        <Canvas Grid.Column="0" HorizontalAlignment="Stretch" Height="475" VerticalAlignment="Stretch"
+                Margin="60, 60, 20, 60" >
+            <TextBlock FontSize="30px" Canvas.Top="0" FontFamily="Microsoft YaHei UI Light" FontWeight="Bold">
+                Zarezerwuj pokój
+            </TextBlock>
+            <Button Content="Wybierz z listy gości" Margin="0 5" Canvas.Left="300" Padding="10 6" Typography.Capitals="AllSmallCaps"
+                    FontSize="14" Click="ButtonBase_OnClick" Style="{DynamicResource SquareButtonStyle}"/>
+
+            <!-- IMIĘ -->
+            <TextBox x:Name="Imie" BorderThickness="0" Height="auto" Canvas.Top="100"
+                        Padding="5px 10px 5px 10px" Controls:TextBoxHelper.Watermark="Imię"
+                        HorizontalAlignment="Left" Width="250" MinWidth="100" FontSize="12px" TextWrapping="Wrap"
+                        VerticalAlignment="Top" >
+                <TextBox.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1"  />
+                </TextBox.Effect>
+            </TextBox>
+
+            <!-- NAZWISKO -->
+            <TextBox x:Name="Nazwisko" BorderThickness="0" Height="auto" Canvas.Top="155"
+                        Padding="5px 10px 5px 10px" Controls:TextBoxHelper.Watermark="Nazwisko"
+                        HorizontalAlignment="Left" Width="250" MinWidth="100" FontSize="12px" TextWrapping="Wrap"
+                        VerticalAlignment="Top" >
+                <TextBox.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1"  />
+                </TextBox.Effect>
+            </TextBox>
+
+            <!-- NUMER DOWODU -->
+            <TextBox x:Name="NumerDowodu" BorderThickness="0" Height="auto" Canvas.Top="210"
+                        Padding="5px 10px 5px 10px" Controls:TextBoxHelper.Watermark="Numer dowodu"
+                        HorizontalAlignment="Left" Width="250" MinWidth="100" FontSize="12px" TextWrapping="Wrap"
+                        VerticalAlignment="Top" >
+                <TextBox.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1"  />
+                </TextBox.Effect>
+            </TextBox>
+
+            <!-- ULICA -->
+            <TextBox x:Name="Ulica" BorderThickness="0" Height="auto" Canvas.Top="265"
+                        Padding="5px 10px 5px 10px" Controls:TextBoxHelper.Watermark="Ulica"
+                        HorizontalAlignment="Left" Width="250" MinWidth="100" FontSize="12px" TextWrapping="Wrap"
+                        VerticalAlignment="Top" >
+                <TextBox.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1"  />
+                </TextBox.Effect>
+            </TextBox>
+
+            <!-- MIASTO -->
+            <TextBox x:Name="Miasto" BorderThickness="0" Height="auto" Canvas.Top="320"
+                        Padding="5px 10px 5px 10px" Controls:TextBoxHelper.Watermark="Miasto"
+                        HorizontalAlignment="Left" Width="250" MinWidth="100" FontSize="12px" TextWrapping="Wrap"
+                        VerticalAlignment="Top" >
+                <TextBox.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1"  />
+                </TextBox.Effect>
+            </TextBox>
+
+            <!-- TELEFON -->
+            <TextBox x:Name="Telefon" BorderThickness="0" Height="auto" Canvas.Top="375"
+                        Padding="5px 10px 5px 10px" Controls:TextBoxHelper.Watermark="Numer telefonu"
+                        HorizontalAlignment="Left" Width="250" MinWidth="100" FontSize="12px" TextWrapping="Wrap"
+                        VerticalAlignment="Top" >
+                <TextBox.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1"  />
+                </TextBox.Effect>
+            </TextBox>
+
+            <!-- EMAIL -->
+            <TextBox x:Name="Email" BorderThickness="0" Height="auto" Canvas.Top="430"
+                        Padding="5px 10px 5px 10px" Controls:TextBoxHelper.Watermark="Adres email"
+                        HorizontalAlignment="Left" Width="250" MinWidth="100" FontSize="12px" TextWrapping="Wrap"
+                        VerticalAlignment="Top" >
+                <TextBox.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1"  />
+                </TextBox.Effect>
+            </TextBox>
+
+        </Canvas>
+
+        <Canvas Grid.Column="1" HorizontalAlignment="Stretch" Height="470" VerticalAlignment="Stretch"
+                Margin="30, 60, 60, 60" >
+
+            <!-- DATA OD -->
+            <DatePicker x:Name="DataOd" BorderThickness="0" Height="auto" Canvas.Top="100"
+                        Padding="5px 10px 5px 10px" Controls:TextBoxHelper.Watermark="Data od"
+                        HorizontalAlignment="Left" Width="250" MinWidth="100" FontSize="12px"
+                        VerticalAlignment="Top" SelectedDateChanged="DataOd_OnSelectedDateChanged" >
+                <DatePicker.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1"  />
+                </DatePicker.Effect>
+            </DatePicker>
+            
+            <!-- DATA DO -->
+            <DatePicker x:Name="DataDo" BorderThickness="0" Height="auto" Canvas.Top="155"
+                        Padding="5px 10px 5px 10px" Controls:TextBoxHelper.Watermark="Data do"
+                        HorizontalAlignment="Left" Width="250" MinWidth="100" FontSize="12px"
+                        VerticalAlignment="Top" SelectedDateChanged="DataDo_OnSelectedDateChanged" >
+                <DatePicker.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1"  />
+                </DatePicker.Effect>
+            </DatePicker>
+
+            <Label Content="Typ pokoju" HorizontalAlignment="Left" Background="Black" Foreground="White" Padding="10,5" Margin="0,219,0,0" VerticalAlignment="Top"/>
+            <ListBox x:Name="ListaPokoi" Height="160" 
+                     Margin="0,252,0,0" Width="300" SelectionMode="Multiple">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding numer}" />
+                            <Label Content="{Binding typ}" />
+                            <Label Content="{Binding cena_za_dobe}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <Button x:Name="BackButton" Style="{DynamicResource SquareButtonStyle}" Content="Wróć"
+                    Typography.Capitals="AllSmallCaps" Canvas.Bottom="0" Width="75" Click="BackButton_OnClick"/>
+
+            <Button x:Name="Wyczysc" Content="Wyczyść Formularz" Canvas.Bottom="0" Margin="95,0,0,0"
+                    Click="Wyczysc_OnClick" Style="{DynamicResource SquareButtonStyle}"
+                    Background="Transparent" BorderBrush="Black" BorderThickness="0,0,0,1" />
+
+            <Button x:Name="Zatwierdz" Style="{DynamicResource SquareButtonStyle}" Content="Zatwierdź"
+                    Typography.Capitals="AllSmallCaps" Background="#FF2EA86B" Foreground="White" BorderBrush="#FF2EA86B"
+                    Margin="225,0,0,0" Canvas.Bottom="0" Width="75" Click="Zatwierdz_OnClick" />
+            
+        </Canvas>
     </Grid>
 </Controls:MetroWindow>

@@ -6,33 +6,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektHotel"
         mc:Ignorable="d"
-        Title="PodsumowanieRezerwacji" Height="450" Width="800" Loaded="MetroWindow_Loaded">
+        WindowTitleBrush="Black"
+        Title="PodsumowanieRezerwacji" Height="650" Width="1000" Loaded="MetroWindow_Loaded">
     <Grid>
-        <TextBlock FontSize="30px" HorizontalAlignment="Left" Margin="60,24,0,0" TextWrapping="Wrap" Text="Podsumowanie rezerwacji" VerticalAlignment="Top"/>
-        <Label Content="Imię" HorizontalAlignment="Left" Margin="57,140,0,0" VerticalAlignment="Top"/>
-        <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="57,171,0,0" VerticalAlignment="Top"/>
-        <Label Content="Numer dowodu" HorizontalAlignment="Left" Margin="57,202,0,0" VerticalAlignment="Top"/>
-        <Label Content="Ulica" HorizontalAlignment="Left" Margin="57,233,0,0" VerticalAlignment="Top"/>
-        <Label Content="Miasto" HorizontalAlignment="Left" Margin="57,264,0,0" VerticalAlignment="Top"/>
-        <Label Content="Telefon" HorizontalAlignment="Left" Margin="57,295,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="57,326,0,0" VerticalAlignment="Top"/>
-        <GridSplitter HorizontalAlignment="Left" Height="241" Margin="380,128,0,0" VerticalAlignment="Top" Width="5"/>
-        <Label Content="Data od" HorizontalAlignment="Left" Margin="445,140,0,0" VerticalAlignment="Top"/>
-        <Label Content="Data do" HorizontalAlignment="Left" Margin="445,179,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="Imie" HorizontalAlignment="Left" Height="23" Margin="174,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="Nazwisko" HorizontalAlignment="Left" Height="23" Margin="174,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="NumerDowodu" HorizontalAlignment="Left" Height="23" Margin="174,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="Ulica" HorizontalAlignment="Left" Height="23" Margin="174,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="Miasto" HorizontalAlignment="Left" Height="23" Margin="174,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="Telefon" HorizontalAlignment="Left" Height="23" Margin="174,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="Email" HorizontalAlignment="Left" Height="23" Margin="174,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Zarezerwowane pokoje:" HorizontalAlignment="Left" Margin="442,219,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="DataOd" HorizontalAlignment="Left" Height="23" Margin="550,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="DataDo" HorizontalAlignment="Left" Height="23" Margin="550,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="Imie_Copy" HorizontalAlignment="Left" Height="23" Margin="174,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="ZarPokoje" HorizontalAlignment="Left" Margin="602,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Label Content="Kwota do zapłaty: " HorizontalAlignment="Left" Margin="495,308,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="Kwota" HorizontalAlignment="Left" Margin="621,313,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
-        <Button x:Name="Wroc" Content="Wróć" HorizontalAlignment="Left" Margin="644,351,0,0" VerticalAlignment="Top" Width="75" Click="Wroc_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Canvas Grid.Column="0" HorizontalAlignment="Stretch" Height="475" VerticalAlignment="Stretch"
+                Margin="60, 60, 20, 60" >
+            <TextBlock FontSize="30px" Canvas.Top="0" FontFamily="Microsoft YaHei UI Light" FontWeight="Bold">
+                Podsumowanie rezerwacji
+            </TextBlock>
+
+            <Label Content="Imię" Canvas.Top="100" Padding="0,10" FontWeight="Bold" />
+            <Label Content="Nazwisko" Canvas.Top="136" Padding="0,10" FontWeight="Bold" />
+            <Label Content="Numer dowodu" Canvas.Top="172" Padding="0,10" FontWeight="Bold" />
+            <Label Content="Ulica" Canvas.Top="208" Padding="0,10" FontWeight="Bold" />
+            <Label Content="Miasto" Canvas.Top="244" Padding="0,10" FontWeight="Bold" />
+            <Label Content="Telefon" Canvas.Top="280" Padding="0,10" FontWeight="Bold" />
+            <Label Content="Email" Canvas.Top="316" Padding="0,10" FontWeight="Bold" />
+
+            <TextBlock x:Name="Imie" Canvas.Top="100" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+            <TextBlock x:Name="Nazwisko" Canvas.Top="136" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+            <TextBlock x:Name="NumerDowodu" Canvas.Top="172" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+            <TextBlock x:Name="Ulica" Canvas.Top="208" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+            <TextBlock x:Name="Miasto" Canvas.Top="244" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+            <TextBlock x:Name="Telefon" Canvas.Top="280" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+            <TextBlock x:Name="Email" Canvas.Top="316" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+        </Canvas>
+
+        <Canvas Grid.Column="1" HorizontalAlignment="Stretch" Height="470" VerticalAlignment="Stretch"
+                Margin="20, 60, 60, 60" >
+
+            <Label Content="Data od" Canvas.Top="100" Padding="0,10" FontWeight="Bold" />
+            <Label Content="Data do" Canvas.Top="136" Padding="0,10" FontWeight="Bold" />
+            <Label Content="Zarezerwowane pokoje" Canvas.Top="172" Padding="0,10" FontWeight="Bold" />
+            <Label Content="Kwota do zapłaty" Canvas.Top="208" Padding="0,10" FontWeight="Bold" />
+
+
+            <TextBlock x:Name="DataOd" Canvas.Top="100" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+            <TextBlock x:Name="DataDo" Canvas.Top="136" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+            <TextBlock x:Name="ZarPokoje" Canvas.Top="172" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+            <TextBlock x:Name="Kwota" Canvas.Top="208" Canvas.Left="160" Padding="0,10" Width="160" TextWrapping="Wrap"/>
+
+
+            <!--<TextBlock x:Name="Imie_Copy" HorizontalAlignment="Left" Height="23" Margin="100,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>-->
+
+            <Button x:Name="Wroc" Content="Wróć" Canvas.Right="0" Style="{DynamicResource SquareButtonStyle}" Canvas.Bottom="0"
+                    Click="Wroc_Click" Typography.Capitals="AllSmallCaps" Width="75"/>
+        </Canvas>
     </Grid>
 </Controls:MetroWindow>

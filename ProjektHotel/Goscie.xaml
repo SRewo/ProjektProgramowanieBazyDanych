@@ -6,12 +6,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektHotel"
         mc:Ignorable="d"
-        Title="Goscie" Height="450" Width="800" Loaded="Window_Loaded">
+        WindowTitleBrush="Black"
+        Height="650" Width="1000" 
+        Title="Zarezerwowani goście" Loaded="Window_Loaded">
     <Grid>
 
-        <DataGrid x:Name="GoscieGrid" VerticalAlignment="Top" AutoGenerateColumns="True" Width="auto" Height="auto" IsReadOnly="True">
-
+        <TextBlock FontSize="30px" Margin="60,60,0,0" FontFamily="Microsoft YaHei UI Light" FontWeight="Bold">
+             Zarezerwowani goście
+        </TextBlock>
+        <DataGrid Margin="60, 130, 60, 120" AutoGenerateColumns="False" x:Name="GoscieGrid"
+                  Width="auto" Height="auto" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Gościa" Binding="{Binding id_goscia}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Imię" Binding="{Binding imie}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding nazwisko}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Numer dowodu" Binding="{Binding numer_dowodu}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ulica" Binding="{Binding ulica}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Miasto" Binding="{Binding miasto}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Numer telefonu" Binding="{Binding telefon}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Adres e-mail" Binding="{Binding email}"></DataGridTextColumn>
+            </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="Btn_save" Content="Zapisz zmiany" HorizontalAlignment="Left" Height="36" Margin="308,304,0,0" VerticalAlignment="Top" Width="92" Click="Btn_save_Click"/>
+
+        <Button x:Name="Btn_save" Content="Zapisz zmiany" HorizontalAlignment="Right" Height="36" Margin="0,0,60,60"
+                 Width="92" Click="Btn_save_Click" VerticalAlignment="Bottom" Style="{DynamicResource SquareButtonStyle}"
+                Typography.Capitals="SmallCaps" Background="#FF2EA86B" Foreground="White" BorderBrush="#FF2EA86B"/>
     </Grid>
 </Controls:MetroWindow>

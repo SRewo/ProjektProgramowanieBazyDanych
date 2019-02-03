@@ -27,6 +27,8 @@ namespace ProjektHotel
         public PodsumowanieRezerwacji()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Owner = Application.Current.MainWindow;
         }
 
         public PodsumowanieRezerwacji(DataSet ds,int idRezerwacji):this()
@@ -99,7 +101,7 @@ namespace ProjektHotel
             DataOd.Text = datyOdDo.FirstOrDefault().dataOd.ToShortDateString();
             DataDo.Text = datyOdDo.FirstOrDefault().dataDo.ToShortDateString();
             ZarPokoje.Text = listaPokoi;
-            Kwota.Text = rezerwacjaDoZaplaty.First() + " " + "PLN";
+            Kwota.Text = Math.Round(rezerwacjaDoZaplaty.First(), 2) + " " + "PLN";
 
         }
     }

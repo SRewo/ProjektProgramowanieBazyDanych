@@ -26,6 +26,8 @@ namespace ProjektHotel
         public Goscie()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Owner = Application.Current.MainWindow;
         }
 
         public Goscie(DataSet dataSet) : this()

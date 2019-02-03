@@ -63,8 +63,8 @@ namespace ProjektHotel
                 else
                 {
                     Menu windowMenu = new Menu(_dataSet,_adapter);
-                    Close();
                     windowMenu.Show();
+                    Close();
                 }
             }
             else
@@ -78,8 +78,8 @@ namespace ProjektHotel
         {
 
             _builder = new SqlConnectionStringBuilder();
-            _builder.DataSource = "localhost";         //"RW\\SQLEXPRESS"
-            _builder.InitialCatalog = "hotel";
+            _builder.DataSource = "localhost";         //"RW\\SQLEXPRESS"  // MAREK0E2D\WINDOWSSERVER
+            _builder.InitialCatalog = "hotel";          // hotel2 - database-name Marek
             _builder.IntegratedSecurity = true;
 
             _dataSet = FillDataset(_builder);

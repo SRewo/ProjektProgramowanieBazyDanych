@@ -4,14 +4,62 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        WindowTitleBrush="Black"
         xmlns:local="clr-namespace:ProjektHotel"
         mc:Ignorable="d"
-        Title="Zaloguj" Height="450" Width="800" Loaded="Logowanie_OnLoaded" DataContext="logowanie">
+        WindowState="Maximized"
+        WindowStyle="None"
+        BorderThickness="0"
+        Title="Zaloguj" Height="900" Width="1320" Loaded="Logowanie_OnLoaded" DataContext="logowanie">
     <Grid>
-        <Label Content="Login" HorizontalAlignment="Left" Margin="209,150,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hasło" HorizontalAlignment="Left" Margin="210,194,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="login" HorizontalAlignment="Left" Height="23" Margin="290,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox Name="password" HorizontalAlignment="Left" Height="23" Margin="290,198,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Zaloguj" HorizontalAlignment="Left" Margin="335,265,0,0" VerticalAlignment="Top" Width="75" Click="ButtonBase_OnClick"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Canvas Grid.Column="0" HorizontalAlignment="Stretch" Height="500" VerticalAlignment="Center" Width="365px" >
+            <Image Source="Resources/logo.png" Height="70px" />
+            
+            <TextBlock FontSize="44px" Canvas.Top="120px" FontFamily="Microsoft YaHei UI Light" FontWeight="Bold">
+                Zaloguj się do<LineBreak/>systemu
+            </TextBlock>
+            
+            <StackPanel Orientation="Horizontal" Canvas.Left="0" Canvas.Top="270" Background="White">
+                <StackPanel.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1"  />
+                </StackPanel.Effect>
+                <Image Source="Resources/user.png" 
+                   Height="15" Margin="25px 0 25px 0" Opacity="0.4"/>
+                <TextBox Name="login" BorderThickness="0" Height="auto"
+                         Padding="0px 20px 0px 20px" Controls:TextBoxHelper.Watermark="Wpisz nazwę użytkownika"
+                         HorizontalAlignment="Left" Width="300px" FontSize="14px" TextWrapping="Wrap"
+                         VerticalAlignment="Top" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Canvas.Left="0" Canvas.Top="355px" Background="White">
+                <StackPanel.Effect>
+                    <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="7" BlurRadius="50" Opacity="0.1" />
+                </StackPanel.Effect>
+                <Image Source="Resources/key.png" 
+                   Height="15" Margin="25px 0 25px 0" Opacity="0.4"/>
+                <PasswordBox Name="password" BorderThickness="0" Height="auto" Padding="0px 20px 0px 20px"
+                             HorizontalAlignment="Left" Width="300px" FontSize="14px"
+                             VerticalAlignment="Top" Controls:TextBoxHelper.Watermark="Wpisz hasło" />
+            </StackPanel>
+
+
+
+            <Button Content="Zaloguj się" Style="{DynamicResource SquareButtonStyle}" Background="Black"
+                    Foreground="White" HorizontalAlignment="Left" Canvas.Right="0" Canvas.Bottom="0"
+                    Padding="35px 12px 35px 12px" FontSize="15px" Click="ButtonBase_OnClick"/>
+        </Canvas>
+
+
+
+        <Canvas Grid.Column="1" HorizontalAlignment="Stretch">
+            <Canvas.Background>
+                <ImageBrush ImageSource="Resources/bg.jpg" Stretch="UniformToFill"/>
+            </Canvas.Background>
+        </Canvas>
     </Grid>
 </Controls:MetroWindow>

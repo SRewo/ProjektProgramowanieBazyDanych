@@ -6,10 +6,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektHotel"
         mc:Ignorable="d"
-        Title="Pokoje" Height="450" Width="800">
+        WindowTitleBrush="Black"
+        Title="Lista pokoi" Height="650" Width="1000">
     <Grid>
-        <DataGrid VerticalAlignment="Top" AutoGenerateColumns="True" x:Name="PokojeGrid" Width="auto" Height="auto">
-            
+        <TextBlock FontSize="30px" Margin="60,60,0,0" FontFamily="Microsoft YaHei UI Light" FontWeight="Bold">
+                Lista pokoi
+        </TextBlock>
+        <DataGrid Margin="60, 130, 60, 60" AutoGenerateColumns="False" x:Name="PokojeGrid"
+                  Width="auto" Height="auto" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID pokoju" Binding="{Binding Path=id_pokoju}"/>
+                <DataGridTextColumn Header="Numer pokoju" Binding="{Binding Path=numer}"/>
+                <DataGridTextColumn Header="Typ pokoju" Binding="{Binding Path=typ }"/>
+                <DataGridTextColumn Header="Cena pokoju za dobę" Binding="{Binding Path=cena_za_dobe}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Controls:MetroWindow>

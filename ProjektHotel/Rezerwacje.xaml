@@ -6,10 +6,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjektHotel"
         mc:Ignorable="d"
-        Title="Rezerwacje" Height="450" Width="800" Loaded="Rezerwacje_OnLoaded">
+        WindowTitleBrush="Black"
+        Title="Lista rezerwacji" Height="650" Width="1000" Loaded="Rezerwacje_OnLoaded">
     <Grid>
-        <DataGrid VerticalAlignment="Top" AutoGenerateColumns="True" x:Name="RezerwacjeGrid" Width="auto" Height="auto">
-
+        <TextBlock FontSize="30px" Margin="60,60,0,0" FontFamily="Microsoft YaHei UI Light" FontWeight="Bold">
+                Lista rezerwacji
+        </TextBlock>
+        <DataGrid Margin="60, 130, 60, 60" x:Name="RezerwacjeGrid" AutoGenerateColumns="False"
+                    Width="auto" Height="auto" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID rezerwacji" Binding="{Binding Path=id_rezerwacji}"/>
+                <DataGridTextColumn Header="ID gościa" Binding="{Binding Path=id_goscia}"/>
+                <DataGridTextColumn Header="Data rezerwacji" Binding="{Binding Path=data_rezerwacji }"/>
+                <DataGridTextColumn Header="Rezerwacja od" Binding="{Binding Path=od}"/>
+                <DataGridTextColumn Header="Rezerwacja do" Binding="{Binding Path=do}"/>
+                <DataGridTextColumn Header="Cena łączna" Binding="{Binding Path=cena_laczna}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Controls:MetroWindow>

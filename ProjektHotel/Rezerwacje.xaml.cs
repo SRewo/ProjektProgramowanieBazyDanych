@@ -26,6 +26,8 @@ namespace ProjektHotel
         public Rezerwacje()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Owner = Application.Current.MainWindow;
         }
 
         public Rezerwacje(DataSet dataSet) : this()

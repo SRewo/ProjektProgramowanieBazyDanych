@@ -4,13 +4,53 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowTitleBrush="Black"
         xmlns:local="clr-namespace:ProjektHotel"
         mc:Ignorable="d"
-        Title="Menu" Height="450" Width="800">
+        WindowState="Maximized"
+        BorderThickness="0"
+        Title="Menu" Height="900" Width="1320">
     <Grid>
-        <Button Name="Zarezerwuj" Content="Zarezerwuj pokój" HorizontalAlignment="Left" Margin="182,92,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Zarezerwuj_OnClick" Style="{StaticResource AccentedSquareButtonStyle}" />
-        <Button Name="Lista" Content="Lista rezerwacji" HorizontalAlignment="Left" Margin="420,92,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Lista_OnClick" Style="{StaticResource AccentedSquareButtonStyle}"/>
-        <Button Name="Pokoje" Content="Pokoje" HorizontalAlignment="Left" Margin="182,221,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Pokoje_OnClick" Style="{StaticResource AccentedSquareButtonStyle}"/>
-        <Button Name="Goscie" Content="Goście" HorizontalAlignment="Left" Margin="420,221,0,0" VerticalAlignment="Top" Width="149" Height="68" Click="Goscie_OnClick" Style="{StaticResource AccentedSquareButtonStyle}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Canvas Grid.Column="0" HorizontalAlignment="Stretch" Height="415" VerticalAlignment="Center" Width="365px" >
+            <TextBlock FontSize="44px" Canvas.Top="0" FontFamily="Microsoft YaHei UI Light" FontWeight="Bold">
+                Co chcesz<LineBreak/>zrobić?
+            </TextBlock>
+            
+            <Button Name="Zarezerwuj" Content="Zarezerwuj pokój" HorizontalAlignment="Left"
+                    Margin="0,150,0,0" VerticalAlignment="Top" Padding="0,20" Width="250"
+                    Click="Zarezerwuj_OnClick" Style="{DynamicResource SquareButtonStyle}"
+                    Background="Black" Foreground="White" Typography.Capitals="AllSmallCaps"
+                    FontSize="15px"/>
+            
+            <Button Name="Lista" Content="Wyświetl listę rezerwacji" HorizontalAlignment="Left"
+                    Margin="0,220,0,0" VerticalAlignment="Top" Padding="0,20" Width="250"
+                    Click="Lista_OnClick" Style="{DynamicResource SquareButtonStyle}"
+                    Background="Black" Foreground="White" Typography.Capitals="AllSmallCaps"
+                    FontSize="15px"/>
+            
+            <Button Name="Pokoje" Content="Wyświetl listę pokoi" HorizontalAlignment="Left"
+                    Margin="0, 290,0,0" VerticalAlignment="Top" Padding="0,20" Width="250"
+                    Click="Pokoje_OnClick" Style="{DynamicResource SquareButtonStyle}"
+                    Background="Black" Foreground="White" Typography.Capitals="AllSmallCaps"
+                    FontSize="15px"/>
+            
+            <Button Name="Goscie" Content="Wyświetl listę gości" HorizontalAlignment="Left"
+                    Margin="0,360,0,0" VerticalAlignment="Top" Padding="0,20" Width="250"
+                    Click="Goscie_OnClick" Style="{DynamicResource SquareButtonStyle}"
+                    Background="Black" Foreground="White" Typography.Capitals="AllSmallCaps"
+                    FontSize="15px"/>
+        </Canvas>
+
+        <Canvas Grid.Column="1" HorizontalAlignment="Stretch">
+            <Image Source="Resources/logo_white.png" Height="70px" Canvas.Right="40" Canvas.Top="40" />
+            <Canvas.Background>
+                <ImageBrush ImageSource="Resources/bg_edit.jpg" Stretch="UniformToFill"/>
+            </Canvas.Background>
+        </Canvas>
     </Grid>
 </Controls:MetroWindow>

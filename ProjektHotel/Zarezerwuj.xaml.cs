@@ -31,6 +31,8 @@ namespace ProjektHotel
         public Zarezerwuj()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Owner = Application.Current.MainWindow;
         }
 
         public Zarezerwuj(DataSet dataSet,SqlDataAdapter adapter) : this()

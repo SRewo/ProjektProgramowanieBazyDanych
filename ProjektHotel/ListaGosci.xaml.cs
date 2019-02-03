@@ -27,6 +27,8 @@ namespace ProjektHotel
         public ListaGosci()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Owner = Application.Current.MainWindow;
         }
 
         public ListaGosci(DataSet ds) : this()
