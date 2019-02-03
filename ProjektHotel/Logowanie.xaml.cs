@@ -99,7 +99,7 @@ namespace ProjektHotel
                 adapter.Fill(dataSet, "uzytkownicy");   
 
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
 
                 MessageBox.Show("Nie udało się połączyć z bazą danych. Aby rozwiązać ten problem skontaktuj się z administratorem systemu.","Błąd bazy danych.",MessageBoxButton.OK,MessageBoxImage.Error);

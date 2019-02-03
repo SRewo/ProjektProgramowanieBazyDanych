@@ -56,7 +56,7 @@ namespace ProjektHotel
 
         private void Goscie_OnClick(object sender, RoutedEventArgs e)
         {
-            Goscie goscie = new Goscie(_dataSet);
+            Goscie goscie = new Goscie(_dataSet, _adapter);
             goscie.ShowDialog();
         }
 
