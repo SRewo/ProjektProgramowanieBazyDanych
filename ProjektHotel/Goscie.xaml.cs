@@ -42,10 +42,5 @@ namespace ProjektHotel
             GoscieGrid.ItemsSource = goscieTabela.DefaultView;
 
         }
-
-        private void Btn_save_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
