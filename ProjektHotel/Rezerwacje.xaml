@@ -16,11 +16,12 @@
                     Width="auto" Height="auto" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID rezerwacji" Binding="{Binding Path=id_rezerwacji}"/>
-                <DataGridTextColumn Header="ID gościa" Binding="{Binding Path=id_goscia}"/>
+                <DataGridTextColumn Header="Imię i nazwisko gościa" Binding="{Binding Path=gosc}"/>
                 <DataGridTextColumn Header="Data rezerwacji" Binding="{Binding Path=data_rezerwacji }"/>
-                <DataGridTextColumn Header="Rezerwacja od" Binding="{Binding Path=od}"/>
-                <DataGridTextColumn Header="Rezerwacja do" Binding="{Binding Path=do}"/>
+                <DataGridTextColumn Header="Rezerwacja od" Binding="{Binding Path=data_od}"/>
+                <DataGridTextColumn Header="Rezerwacja do" Binding="{Binding Path=data_do}"/>
                 <DataGridTextColumn Header="Cena łączna" Binding="{Binding Path=cena_laczna}"/>
+                <DataGridTextColumn Header="Numery Pokoi" Binding="{Binding Path=numery_pokoi}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

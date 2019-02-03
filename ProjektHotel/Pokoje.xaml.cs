@@ -35,7 +35,17 @@ namespace ProjektHotel
             _dataSet = dataSet;
 
             DataTable pokojeTable = _dataSet.Tables["pokoje"];
-            PokojeGrid.ItemsSource = pokojeTable.DefaultView;
+
+            var view = from pokoj in pokojeTable.AsEnumerable()
+                select new
+                {
+                    id_pokoju = pokoj.Field<int>("id_pokoju"),
+                    numer = pokoj.Field<Int16>("numer"),
+                    typ = pokoj.Field<string>("typ"),
+                    cena_za_dobe = Math.Round(pokoj.Field<decimal>("cena_za_dobe"), 2) + " PLN"
+                };
+
+            PokojeGrid.ItemsSource = view;
         }
     }
 }
