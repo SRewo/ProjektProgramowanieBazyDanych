@@ -15,7 +15,7 @@
              Zarezerwowani goście
         </TextBlock>
         <DataGrid Margin="60, 130, 60, 120" AutoGenerateColumns="False" x:Name="GoscieGrid"
-                  Width="auto" Height="auto" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                  Width="auto" Height="auto" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID Gościa" Binding="{Binding id_goscia}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Imię" Binding="{Binding imie}"></DataGridTextColumn>
@@ -27,9 +27,5 @@
                 <DataGridTextColumn Header="Adres e-mail" Binding="{Binding email}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button x:Name="Btn_save" Content="Zapisz zmiany" HorizontalAlignment="Right" Height="36" Margin="0,0,60,60"
-                 Width="92" Click="Btn_save_Click" VerticalAlignment="Bottom" Style="{DynamicResource SquareButtonStyle}"
-                Typography.Capitals="SmallCaps" Background="#FF2EA86B" Foreground="White" BorderBrush="#FF2EA86B"/>
     </Grid>
 </Controls:MetroWindow>

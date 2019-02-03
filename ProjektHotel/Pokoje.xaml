@@ -13,7 +13,7 @@
                 Lista pokoi
         </TextBlock>
         <DataGrid Margin="60, 130, 60, 60" AutoGenerateColumns="False" x:Name="PokojeGrid"
-                  Width="auto" Height="auto" IsReadOnly="True">
+                  Width="auto" Height="auto" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID pokoju" Binding="{Binding Path=id_pokoju}"/>
                 <DataGridTextColumn Header="Numer pokoju" Binding="{Binding Path=numer}"/>
